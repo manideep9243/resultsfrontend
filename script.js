@@ -6,7 +6,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
     return;
   }
 
-  fetch('https://resultsbackend.onrender.com/api/data')
+  fetch('http://localhost:3000/api/data')
     .then(response => response.json())
     .then(data => {
       const studentData = data.filter(item => item.rollNumber === rollNumber);
@@ -24,7 +24,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
             <tr>
               <th>Subject Code</th>
               <th>Subject Name</th>
-              <th>Grade Letter</th>
+              <th>Grade</th>
               <th>Grade Point</th>
               <th>Credits</th>
             </tr>
