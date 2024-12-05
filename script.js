@@ -104,7 +104,7 @@ function renderTable(studentData) {
 
 // Function to calculate Pass/Fail status and SGPA
 function calculateStatusAndSGPA(studentData) {
-  const isFail = studentData.some(item => item.GRADE_LETTER === 'F');
+  const isFail = studentData.some(item => item.GRADE_LETTER === 'F' || item.GRADE_LETTER === 'ABSENT');
   const statusElement = document.getElementById('status');
   const sgpaElement = document.getElementById('sgpa');
 
@@ -112,19 +112,17 @@ function calculateStatusAndSGPA(studentData) {
   statusElement.textContent = isFail ? 'Fail' : 'Pass';
   statusElement.style.color = isFail ? 'red' : 'green';
 
-  // Calculate SGPA
-  if (isFail) {
-    sgpaElement.textContent = 'N/A';
-  } else {
-    let totalGradePoints = 0;
-    let totalCredits = 0;
 
-    studentData.forEach(item => {
-      const gradePoint = parseFloat(item.GRADE_POINT);
-      const credits = parseFloat(item.CREDITS);
-      totalGradePoints += gradePoint * credits;
-      totalCredits += credits;
-    });
+     // Calculate SGPA
+      if (isFail||GRADE_LETTER === 'ABSENT') {
+        document.getElementById('sgpa').textContent = 'N/A';
+      } else {
+        let totalGradePoints = 0;
+        let totalCredits = 0;
+        studentData.forEach(item => {
+          totalGradePoints += item.GRADE_POINT * item.CREDITS;
+          totalCredits += item.CREDITS;
+        });
 
     const sgpa = totalCredits > 0 ? (totalGradePoints / totalCredits).toFixed(2) : 'N/A';
     sgpaElement.textContent = sgpa;
