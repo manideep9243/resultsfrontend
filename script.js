@@ -114,7 +114,7 @@ function calculateStatusAndSGPA(studentData) {
 
 
      // Calculate SGPA
-      if (isFail||GRADE_LETTER === 'ABSENT') {
+      if (isFail|| item.GRADE_LETTER === 'ABSENT') {
         document.getElementById('sgpa').textContent = 'N/A';
       } else {
         let totalGradePoints = 0;
