@@ -113,18 +113,22 @@ function calculateStatusAndSGPA(studentData) {
   statusElement.style.color = isFail ? 'red' : 'green';
 
 
-     // Calculate SGPA
-      if (isFail) {
-        document.getElementById('sgpa').textContent = 'N/A';
-      } else {
-        let totalGradePoints = 0;
-        let totalCredits = 0;
-        studentData.forEach(item => {
-          totalGradePoints += item.GRADE_POINT * item.CREDITS;
-          totalCredits += item.CREDITS;
-        });
+    // Calculate SGPA
+  if (isFail) {
+    sgpaElement.textContent = 'N/A';
+  } else {
+    let totalGradePoints = 0;
+    let totalCredits = 0;
+
+    studentData.forEach(item => {
+      const gradePoint = parseFloat(item.GRADE_POINT);
+      const credits = parseFloat(item.CREDITS);
+      totalGradePoints += gradePoint * credits;
+      totalCredits += credits;
+    });
 
     const sgpa = totalCredits > 0 ? (totalGradePoints / totalCredits).toFixed(2) : 'N/A';
     sgpaElement.textContent = sgpa;
+
   }
 }
