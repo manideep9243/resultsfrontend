@@ -104,7 +104,7 @@ function renderTable(studentData) {
 
 // Function to calculate Pass/Fail status and SGPA
 function calculateStatusAndSGPA(studentData) {
-  const isFail = studentData.some(item => item.GRADE_LETTER === 'F');
+  const isFail = studentData.some(item => item.GRADE_LETTER === 'F' || item.GRADE_LETTER==='ABSENT' );
   const statusElement = document.getElementById('status');
   const sgpaElement = document.getElementById('sgpa');
 
