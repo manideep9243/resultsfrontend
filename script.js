@@ -24,12 +24,12 @@ document.getElementById('searchButton').addEventListener('click', () => {
       return response.json();
     })
     .then(rawData => {
-      console.log('Raw data:', rawData);
+      //console.log('Raw data:', rawData);
 
       // Clean the keys in the data
       const data = rawData.map(cleanKeys);
 
-      console.log('Cleaned data:', data);
+      //console.log('Cleaned data:', data);
 
       const sanitizedRollNumber = rollNumber.toString().trim();
 
@@ -38,7 +38,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
         String(item.rollNumber || '').trim() === sanitizedRollNumber
       );
 
-      console.log('Matched student data:', studentData);
+      //console.log('Matched student data:', studentData);
       if (!studentData.length) {
         dataContainer.innerHTML = '<p>No results found for the entered roll number.</p>';
         document.getElementById('status').textContent = 'N/A';
